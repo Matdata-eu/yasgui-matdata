@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Yasgui - SPARQL interface" />
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="manifest.json" />
+  
+  <!-- YASGUI CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@matdata/yasgui@4.7.3/build/yasgui.min.css">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main site stylesheet -->
+  <link rel="stylesheet" href="main.css">
+  
+  <title>Yasgui</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  
+  <!-- Header with logo -->
+  <div id="header">
+    <img id="logo" src="logo.svg" alt="Matdata Logo">
+  </div>
+  
+  <!-- YASGUI container -->
+  <div id="yasgui"></div>
+    
+    <!-- YASGUI JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@matdata/yasgui@4.7.3/build/yasgui.min.js"></script>
+
+    <!-- vis-network (required dependency) -->
+    <script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+
+    <!-- Main site script -->
+    <script src="main.js"></script>
+
+  <div id="footer">
+    <small>Source code available on <a href="https://github.com/Matdata-eu/yasgui-matdata">Matdata-eu/yasgui-matdata</a> 
+      using <a href="https://github.com/Matdata-eu/yasgui">Matdata-eu/yasgui</a> with credits to <a href="https://github.com/zazuko/yasgui">Zazuko/Yasgui</a>, 
+      <a href="https://github.com/triplydb/Yasgui">TriplyDB/Yasgui</a>, <a href="https://github.com/Thib-G/yasgui-plugin-geo">Thib-G/yasgui-plugin-geo</a> 
+      and <a href="https://github.com/Matdata-eu/yasgui-graph-plugin">Matdata-eu/yasgui-graph-plugin</a></small>
+  </div>
+</body>
+
+</html>
