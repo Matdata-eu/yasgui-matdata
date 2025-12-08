@@ -35,7 +35,7 @@ if (typeof Yasgui !== "undefined") {
   const yasgui = new Yasgui(document.getElementById("yasgui"), {
     // Set the SPARQL endpoint
     requestConfig: {
-      endpoint: "https://change.to.default.endpoint/sparql",
+      endpoint: "https://dbpedia.org/sparql",
     },
 
     // Allow resizing of the Yasqe editor
