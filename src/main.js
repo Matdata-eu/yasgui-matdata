@@ -37,6 +37,12 @@ if (typeof Yasgui !== "undefined") {
     requestConfig: {
       endpoint: "https://dbpedia.org/sparql",
     },
+    // Set alternative SPARQL endpoint quick switch buttons
+    endpointButtons: [
+      { endpoint: "https://dbpedia.org/sparql", label: "DBpedia" },
+      { endpoint: "https://query.wikidata.org/bigdata/namespace/wdq/sparql", label: "Wikidata" },
+      { endpoint: "https://data-interop.era.europa.eu/api/sparql", label: "ERA" }
+    ],
 
     // Allow resizing of the Yasqe editor
     resizeable: true,
