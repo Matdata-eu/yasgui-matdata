@@ -162,3 +162,9 @@ body {
     margin-top: 10px;
   }
 }
+
+/* To remove when Thib geo plugin released the PR */
+.leaflet-container {
+  height: 100% !important;
+  min-width: 500px;
+}
