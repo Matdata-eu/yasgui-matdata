@@ -102,7 +102,16 @@ if (typeof Yasgui !== "undefined") {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           
-          const data = await response.json();
+          // Get response as text first to handle potential PHP warnings
+          const responseText = await response.text();
+          
+          // Extract JSON object from response (ignore any PHP warnings/HTML before it)
+          const jsonMatch = responseText.match(/\{.*\}/s);
+          if (!jsonMatch) {
+            throw new Error('No JSON object found in response');
+          }
+          
+          const data = JSON.parse(jsonMatch[0]);
           
           if (data.status === 'fail') {
             throw new Error(data.message || 'Failed to shorten URL');
