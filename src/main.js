@@ -7,8 +7,12 @@
 
   // Toggle footer visibility
   footerToggle.addEventListener("click", function () {
+    const isExpanded = footer.classList.contains("expanded");
     footer.classList.toggle("expanded");
     footerToggle.classList.toggle("hidden");
+    
+    // Update ARIA attribute
+    footerToggle.setAttribute("aria-expanded", !isExpanded);
   });
 
   // Close footer when clicking outside
@@ -20,6 +24,94 @@
     if (footer.classList.contains("expanded") && !isClickInsideFooter && !isClickOnToggle) {
       footer.classList.remove("expanded");
       footerToggle.classList.remove("hidden");
+      footerToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+})();
+
+// Credits modal functionality with WCAG compliance
+(function () {
+  const modal = document.getElementById("credits-modal");
+  const creditsBtn = document.getElementById("credits-btn");
+  const closeBtn = document.getElementById("close-modal");
+  let lastFocusedElement = null;
+
+  if (!modal || !creditsBtn || !closeBtn) return;
+
+  // Get all focusable elements within the modal
+  function getFocusableElements() {
+    return modal.querySelectorAll(
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+  }
+
+  // Open modal
+  function openModal() {
+    lastFocusedElement = document.activeElement;
+    modal.removeAttribute("hidden");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+    
+    // Focus the close button
+    closeBtn.focus();
+
+    // Trap focus within modal
+    modal.addEventListener("keydown", trapFocus);
+  }
+
+  // Close modal
+  function closeModal() {
+    modal.setAttribute("hidden", "");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = ""; // Restore scrolling
+    
+    // Return focus to the element that opened the modal
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+    }
+
+    // Remove focus trap
+    modal.removeEventListener("keydown", trapFocus);
+  }
+
+  // Trap focus within modal
+  function trapFocus(e) {
+    const focusableElements = getFocusableElements();
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    // Close on Escape key
+    if (e.key === "Escape") {
+      closeModal();
+      return;
+    }
+
+    // Trap Tab key
+    if (e.key === "Tab") {
+      if (e.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
+  }
+
+  // Event listeners
+  creditsBtn.addEventListener("click", openModal);
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close modal when clicking outside the modal content
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      closeModal();
     }
   });
 })();

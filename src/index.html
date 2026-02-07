@@ -26,17 +26,18 @@
 </head>
 
 <body>
+  <a href="#yasgui" class="skip-link">Skip to main content</a>
   <noscript>You need to enable JavaScript to run this app.</noscript>
 
   <!-- YASGUI container -->
-  <div id="yasgui"></div>
+  <main id="yasgui" role="main" aria-label="SPARQL Query Interface"></main>
 
   <!-- YASGUI JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/@matdata/yasgui@5.14.0/build/yasgui.min.js"></script>
 
-  <!-- Footer toggle button (visible on small screens) -->
-  <button id="footer-toggle" aria-label="Toggle footer">
-    <i class="fas fa-info-circle"></i>
+  <!-- Footer toggle button -->
+  <button id="footer-toggle" aria-label="Toggle footer" aria-expanded="false">
+    <i class="fas fa-info-circle" aria-hidden="true"></i>
   </button>
 
   <div id="footer">
@@ -68,14 +69,81 @@
         </g>
       </svg>
     </a>
-    <div class="footer-center">
-      <small>Source code available on <a href="https://github.com/Matdata-eu/yasgui">Matdata-eu/yasgui</a> with credits
-        to <a href="https://github.com/zazuko/yasgui">Zazuko/Yasgui</a>,
-        <a href="https://github.com/triplydb/Yasgui">TriplyDB/Yasgui</a>, <a
-          href="https://github.com/Thib-G/yasgui-geo-tg">Thib-G/yasgui-plugin-geo</a>
-        and <a href="https://github.com/Matdata-eu/yasgui-graph-plugin">Matdata-eu/yasgui-graph-plugin</a></small>
-      <small>Found a bug or have a feature request? <a href="https://github.com/Matdata-eu/Yasgui/issues/new"
-          target="_blank" rel="noopener noreferrer">Let us know!</a></small>
+    <nav class="footer-center" aria-label="Footer navigation">
+      <small>
+        <a href="https://yasgui-doc.matdata.eu/docs/" target="_blank" rel="noopener noreferrer">Documentation</a>
+        <span aria-hidden="true">|</span>
+        <a href="https://github.com/Matdata-eu/yasgui" target="_blank" rel="noopener noreferrer">Source code</a>
+        <span aria-hidden="true">|</span>
+        <button id="credits-btn" type="button" class="credits-link" aria-haspopup="dialog">Credits</button>
+        <span aria-hidden="true">|</span>
+        <a href="https://github.com/Matdata-eu/Yasgui/issues/new" target="_blank" rel="noopener noreferrer">Bugs or feature requests</a>
+      </small>
+    </nav>
+  </div>
+
+  <!-- Credits Modal -->
+  <div id="credits-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="credits-title" hidden>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="credits-title">Credits & Acknowledgments</h2>
+        <button id="close-modal" type="button" class="close-button" aria-label="Close credits dialog">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <section>
+          <h3>Core Dependencies</h3>
+          <ul>
+            <li>
+              <strong><a href="https://github.com/Matdata-eu/yasgui" target="_blank" rel="noopener noreferrer">@matdata/yasgui</a></strong> (v5.14.0)
+              - SPARQL editor and results visualizer, based on forks from:
+              <ul>
+                <li><a href="https://github.com/zazuko/yasgui" target="_blank" rel="noopener noreferrer">Zazuko/Yasgui</a></li>
+                <li><a href="https://github.com/triplydb/Yasgui" target="_blank" rel="noopener noreferrer">TriplyDB/Yasgui</a></li>
+              </ul>
+            </li>
+            <li>
+              <strong><a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer">Font Awesome</a></strong> (v6.4.0)
+              - Icons library
+            </li>
+          </ul>
+        </section>
+        
+        <section>
+          <h3>YASGUI Plugins</h3>
+          <ul>
+            <li>
+              <strong><a href="https://github.com/Matdata-eu/yasgui-table-plugin" target="_blank" rel="noopener noreferrer">yasgui-table-plugin</a></strong>
+              - Table visualization plugin by Matdata
+            </li>
+            <li>
+              <strong><a href="https://github.com/Thib-G/yasgui-geo-tg" target="_blank" rel="noopener noreferrer">yasgui-plugin-geo</a></strong>
+              - Geographic data visualization plugin by Thib-G
+            </li>
+            <li>
+              <strong><a href="https://github.com/Matdata-eu/yasgui-graph-plugin" target="_blank" rel="noopener noreferrer">yasgui-graph-plugin</a></strong>
+              - Graph visualization plugin by Matdata
+            </li>
+          </ul>
+        </section>
+        
+        <section>
+          <h3>Additional Technologies</h3>
+          <ul>
+            <li><strong>CodeMirror</strong> - Code editor component (used within YASGUI)</li>
+            <li><strong>Leaflet</strong> - Interactive maps library (for geo plugin)</li>
+            <li><strong>D3.js</strong> - Data visualization library (for graph visualizations)</li>
+            <li><strong>SPARQL.js</strong> - SPARQL query parser</li>
+            <li><strong>Tabulator</strong> - Table visualization library (for table plugin)</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h3>License</h3>
+          <p>This project is <a href="https://github.com/Matdata-eu/yasgui-matdata" target="_blank" rel="noopener noreferrer">open source</a>. Please refer to individual package licenses for specific terms.</p>
+        </section>
+      </div>
     </div>
   </div>
 
