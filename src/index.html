@@ -77,9 +77,90 @@
         <span aria-hidden="true">|</span>
         <button id="credits-btn" type="button" class="credits-link" aria-haspopup="dialog">Credits</button>
         <span aria-hidden="true">|</span>
+        <button id="privacy-btn" type="button" class="credits-link" aria-haspopup="dialog">Privacy</button>
+        <span aria-hidden="true">|</span>
         <a href="https://github.com/Matdata-eu/Yasgui/issues/new" target="_blank" rel="noopener noreferrer">Bugs or feature requests</a>
       </small>
     </nav>
+  </div>
+
+  <!-- Privacy Modal -->
+  <div id="privacy-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" hidden>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="privacy-title">Privacy Statement</h2>
+        <button id="close-privacy-modal" type="button" class="close-button" aria-label="Close privacy dialog">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <section>
+          <h3>Data Collection</h3>
+          <p>
+            <strong>No user data is collected by this website.</strong> We are committed to your privacy and do not track, 
+            store, or process any personal information during your use of this tool.
+          </p>
+        </section>
+
+        <section>
+          <h3>Third-Party Services</h3>
+          <p>
+            This website relies on several third-party services, which may have their own data collection practices:
+          </p>
+          <ul>
+            <li>
+              <strong>Content Delivery Networks (CDNs):</strong> The JavaScript libraries and stylesheets used by this 
+              application are hosted on external CDNs (jsdelivr.net, cdnjs.cloudflare.com). These CDNs may collect 
+              anonymous usage statistics. Please refer to their respective privacy policies for more information.
+            </li>
+            <li>
+              <strong>Cloudflare DNS:</strong> The domain DNS is managed by Cloudflare. Some DNS traffic statistics may 
+              be collected for operational purposes. To our knowledge, these statistics are anonymous and do not contain 
+              personally identifiable information.
+            </li>
+            <li>
+              <strong>GitHub Pages:</strong> This website is hosted on GitHub Pages. GitHub does not collect or store 
+              HTTP access logs for GitHub Pages sites.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Local Storage</h3>
+          <p>
+            All application settings, including your queries, tabs, workspaces, and preferences, are stored locally in 
+            your browser's local storage. <strong>This data never leaves your device</strong> and is not transmitted to 
+            any server operated by Matdata.
+          </p>
+        </section>
+
+        <section>
+          <h3>SPARQL Queries</h3>
+          <p>
+            When you execute a SPARQL query, it is sent directly from your browser to the SPARQL endpoint you have selected. 
+            <strong>Matdata does not see or log any of this traffic.</strong> The SPARQL endpoint you query may have its own 
+            logging and privacy policies. Please consult the documentation of the specific SPARQL endpoint for more information.
+          </p>
+        </section>
+
+        <section>
+          <h3>Tracking & Analytics</h3>
+          <p>
+            <strong>No tracking or analytics software has been intentionally added to this website.</strong> We do not use 
+            cookies, web beacons, or any other tracking mechanisms to monitor your activity.
+          </p>
+        </section>
+
+        <section>
+          <h3>Questions</h3>
+          <p>
+            If you have any questions or concerns about this privacy statement, please 
+            <a href="https://github.com/Matdata-eu/Yasgui/issues/new" target="_blank" rel="noopener noreferrer">open an issue</a> 
+            on our GitHub repository or contact us at <a href="https://matdata.eu/" target="_blank" rel="noopener noreferrer">matdata.eu</a>.
+          </p>
+        </section>
+      </div>
+    </div>
   </div>
 
   <!-- Credits Modal -->

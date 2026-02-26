@@ -116,6 +116,93 @@
   });
 })();
 
+// Privacy modal functionality with WCAG compliance
+(function () {
+  const modal = document.getElementById("privacy-modal");
+  const privacyBtn = document.getElementById("privacy-btn");
+  const closeBtn = document.getElementById("close-privacy-modal");
+  let lastFocusedElement = null;
+
+  if (!modal || !privacyBtn || !closeBtn) return;
+
+  // Get all focusable elements within the modal
+  function getFocusableElements() {
+    return modal.querySelectorAll(
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+  }
+
+  // Open modal
+  function openModal() {
+    lastFocusedElement = document.activeElement;
+    modal.removeAttribute("hidden");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+    
+    // Focus the close button
+    closeBtn.focus();
+
+    // Trap focus within modal
+    modal.addEventListener("keydown", trapFocus);
+  }
+
+  // Close modal
+  function closeModal() {
+    modal.setAttribute("hidden", "");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = ""; // Restore scrolling
+    
+    // Return focus to the element that opened the modal
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+    }
+
+    // Remove focus trap
+    modal.removeEventListener("keydown", trapFocus);
+  }
+
+  // Trap focus within modal
+  function trapFocus(e) {
+    const focusableElements = getFocusableElements();
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    // Close on Escape key
+    if (e.key === "Escape") {
+      closeModal();
+      return;
+    }
+
+    // Trap Tab key
+    if (e.key === "Tab") {
+      if (e.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
+  }
+
+  // Event listeners
+  privacyBtn.addEventListener("click", openModal);
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close modal when clicking outside the modal content
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+})();
+
 // Function to sync theme with body
 function syncThemeWithBody() {
   const theme = document.documentElement.getAttribute("data-theme") || "light";
