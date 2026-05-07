@@ -220,7 +220,7 @@ if (typeof Yasgui !== "undefined") {
     endpointButtons: [
       { endpoint: "https://dbpedia.org/sparql", label: "DBpedia" },
       { endpoint: "https://query.wikidata.org/bigdata/namespace/wdq/sparql", label: "Wikidata" },
-      { endpoint: "https://data-interop.era.europa.eu/api/sparql", label: "ERA" }
+      { endpoint: "https://graph.data.era.europa.eu/repositories/rinf-plus", label: "ERA" }
     ],
 
     // Allow resizing of the Yasqe editor
@@ -240,7 +240,7 @@ if (typeof Yasgui !== "undefined") {
           //Feel free to include any other fields (e.g. a description or icon
           //that you'd like to use when rendering)
           {
-            endpoint: "https://data-interop.era.europa.eu/api/sparql",
+            endpoint: "https://graph.data.era.europa.eu/repositories/rinf-plus",
           },
           {
             endpoint: "https://dbpedia.org/sparql",
