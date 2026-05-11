@@ -211,6 +211,24 @@ function syncThemeWithBody() {
 
 // YASGUI is loaded via CDN in index.html and available as a global variable
 if (typeof Yasgui !== "undefined") {
+  // Set table plugin defaults before Yasgui init.
+  // Tab.initYasr() does not forward yasr.pluginsOptions from the Yasgui
+  // constructor config, so we must inject it via Yasr.defaults instead.
+  // Yasr constructor does: this.config = merge({}, Yasr.defaults, conf)
+  // TablePlugin constructor reads: (yasr.config as any)?.pluginsOptions?.['Table']
+  if (Yasgui.Yasr) {
+    Yasgui.Yasr.defaults.pluginsOptions = {
+      Table: {
+        displayConfig: {
+          uriDisplayMode: 'abbreviated',
+          showDatatypes: false,
+          ellipsisMode: true
+        },
+        persistenceEnabled: true
+      }
+    };
+  }
+
   const yasgui = new Yasgui(document.getElementById("yasgui"), {
     // Set the SPARQL endpoint
     requestConfig: {
